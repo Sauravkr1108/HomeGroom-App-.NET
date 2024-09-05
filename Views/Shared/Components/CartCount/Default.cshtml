@@ -1,0 +1,20 @@
+﻿@model HomeGroom.ViewModels.CartViewModel
+
+@if (Model.Cart.CartItems.Count() > 0)
+{
+    <li class="nav-item">
+        <a asp-controller="Cart" asp-action="Index">
+            <span class="fa-stack">
+                <i style="color:lightblue" class="fas fa-shopping-bag fa-stack-2x"></i>
+                <b style="color:darkslategray" class="fa-stack-2x">
+                    @Model.Cart.CartItems.Count()
+                </b>
+            </span>
+
+        </a>
+        
+    </li>
+}
+
+
+

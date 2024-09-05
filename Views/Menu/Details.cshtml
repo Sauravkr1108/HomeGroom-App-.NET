@@ -1,0 +1,64 @@
+﻿@model HomeGroom.Models.Service
+<script>
+
+    function checkDate() {
+        var selectedDate = new Date(document.getElementById("datepicker").value);
+
+        var now = new Date();
+        if (selectedDate < now) {
+            document.getElementById("errname").innerHTML = " **Please give valid date";
+            return false;
+        }
+        else {
+            document.getElementById("errname").innerHTML = "";
+        }
+        
+    }
+
+</script>
+
+<div class="container mt-4">
+    <a asp-controller="Menu" asp-action="Index"><i class="fas fa-arrow-circle-left fa-2x"></i></a><br /><br/>
+    <div style="display:inline;text-align:left;">
+        <img src="@Url.Content(Model.ImagePath)" class="rounded" style="height:200px;width:auto" alt="...">
+        <div class="mt-2 mb-2">
+            <h3 style="color:purple">@Model.ServiceName</h3>
+        </div><br />
+    </div>
+    <form asp-controller="Cart" asp-action="AddtoShoppingCart" asp-route-serviceId="@Model.ServiceId" method="post">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" required>
+            
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Date</label>
+            <input type="date" min="2021-12-06" class="form-control" id="datepicker"  name="date" required>
+            <span id="errdate" style="color:red;"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Time</label>
+            <input type="time" class="form-control" id="timepicker" name="time" required>
+
+        </div>
+        <div class="mb-3">
+            <label for="mob" class="form-label">Mobile Number</label>
+            <input  type="tel" minlength="10" maxlength="10" title="10 digit mobile number"  class="form-control" id="mob"  name="mob" required>
+            <span id="errmob" style="color:red;"></span>
+        </div>
+        <div class="mb-3">
+            <label for="add1" class="form-label">Address1</label>
+            <input type="text" class="form-control" id="add1" name="addr1">
+        </div>
+        <div class="mb-3">
+            <label for="add2" class="form-label">Address2</label>
+            <input type="text" class="form-control" id="add2" name="addr2" required>
+           
+        </div>
+
+        <input type="submit" value="Book Appointment" class="btn btn-success">
+    </form>
+    <br />
+    <a class="btn btn-warning" asp-action="Map">Map</a>
+</div>
+    

@@ -1,0 +1,35 @@
+﻿@model HomeGroom.Models.Service
+<style>
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 0px 20px #b0c4de;
+    }
+    .card-img-top {
+        width: 100%;
+        height: 15vw;
+        object-fit: cover;
+    }
+</style>
+<div class="col col-4 mt-3 mb-3">
+    <div class="card" style="width: 18rem; border-color:lightsteelblue">
+        <img class="card-img-top" src="@Url.Content(Model.ImagePath)" alt="Card image cap">
+        <div class="card-body">
+            <h5 style="color:purple" class="card-title text-center">@Model.ServiceName</h5>
+
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item text-center"><b>@Model.Price.ToString("C")</b></li>
+        </ul>
+        @*<div class="text-center">
+            <b>@Model.Price.ToString("C")</b>
+        </div>*@
+        
+        <div class="card-body text-center">
+            <a class="btn btn-success" asp-controller="Menu" asp-action="Details" asp-route-serviceId="@Model.ServiceId">Book Now</a>
+        </div>
+    </div>
+</div>
+
+
+
+

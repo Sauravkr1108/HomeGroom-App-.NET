@@ -1,0 +1,48 @@
+﻿@model HomeGroom.ViewModels.ServiceViewModel
+<style>
+    #ip3 {
+        border-radius: 10px;
+        border: 1px solid purple;
+        padding: 23px;
+        width: 500px;
+        height: 15px;
+    }
+</style>
+
+<p style="font-family:Georgia;" class="display-5 text-secondary text-center mt-3">Services</p>
+<div class="container">
+    <div class="row">
+        <div class="col col-1">
+            @await Component.InvokeAsync("CategoryMenu")
+        </div>
+        <div class="col">
+            <form asp-controller="Menu" asp-action="Index" method="get">
+                @*@Html.TextBox("search")*@
+                <input id="ip3" name="search" type="text" placeholder="Search for Service..." /> &nbsp;&nbsp;&nbsp;
+                <input class="btn btn-outline-success" type="submit" value="Search" />&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-outline-primary" asp-action="Index">Reset</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;<small>Filter : <i style="color:purple">@TempData["Category"]</i></small>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-2">
+    @if (Model.AllServices.Count() == 0)
+    {
+        <p>No Items Found...</p>
+    }
+    <div class="row">
+
+
+        @foreach (var menu in Model.AllServices)
+        {
+            <partial name="_ServiceList" model="menu" />
+        }
+
+    </div>
+</div>
+

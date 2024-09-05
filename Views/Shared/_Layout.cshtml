@@ -1,0 +1,120 @@
+﻿@inject SignInManager<IdentityUser> signInManager;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="~/content/FontAwesome/css/all.css" />
+    
+    <script src="~/Script/js/fontawesome.js"></script>
+    <style>
+        .navbar .navbar-nav > li > a:focus, .navbar .navbar-nav > li > a:hover {
+            
+            background-color: purple    ;
+            border-radius:10%;
+           
+        }
+        body {
+            background-image: linear-gradient(#f9f5ff, white, #f9f5ff);
+            display:flex;
+            flex-direction:column;
+            height:100%;
+        }
+        footer {
+            margin-top: 10px;
+            height: 20rem;
+            width: 100vw;
+            background-color: #310038;
+            color: white;
+            text-align: center;
+            margin-top: auto
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #52005e">
+            <div class="container-fluid" style="color:orange;font-family:Corbel">
+                <img src="~/Images/logohome.png" width="50" height="50">HomeGroom
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light mx-4" asp-area="" asp-controller="OrderHistory" asp-action="Index">History</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light mx-4" asp-area="" asp-controller="Crud" asp-action="Index">Manage</a>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light mx-4" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light mx-4" asp-area="" asp-controller="Menu" asp-action="Index">Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light mx-4" asp-area="" asp-controller="Cart" asp-action="Index">View Cart</a>
+                                @await Component.InvokeAsync("CartCount")
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-light mx-4" asp-area="" asp-controller="AboutUs" asp-action="Index">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light mx-4" asp-area="" asp-controller="ContactUs" asp-action="Index">Contact Us</a>
+                            </li>
+
+                        }
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        @if (IsSectionDefined("Scripts"))
+                        {
+                            @RenderSection("Scripts")
+                        }
+
+                        <partial name="_LoginPartial" />
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div>
+        @RenderBody()
+        <partial name="_ScrollUp" />
+    </div>
+    <footer class="footer mt-5">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col col-6">
+                    <p>Follow us on</p>
+                    <a href="https://www.instagram.com/"><i style="color:deeppink" class="fab fa-instagram fa-2x"></i></a>&nbsp;&nbsp;
+                    <a href="https://twitter.com/?lang=en"><i style="color:deepskyblue" class="fab fa-twitter fa-2x"></i></a>
+                    <br /><br />
+                    <p>For any queries.. Call Us Now!!</p>
+                    <tel class="btn-outline-success" phone="7088791288" content="Call Us"></tel>
+                    <i style="color:lightseagreen" class="fas fa-phone-volume fa-2x"></i>
+                </div>
+                <div class="col col-6">
+                    <div class="container" style="vertical-align:middle">
+                        <img src="~/Images/home-removebg-preview.png" alt="..." />
+                    </div>
+                    
+                </div>
+            </div>
+            <p style="color:lavender">Developed by Saurav Kumar &copy; 2021 - HomeGroom </p></div>
+    </footer>
+</body>
+</html>

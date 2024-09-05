@@ -1,0 +1,39 @@
+﻿@model IEnumerable<HomeGroom.Models.Service>
+
+<div class="container mt-4">
+    <div class="display-6 text-center mb-4 text-secondary">Manage</div>
+    <button class="btn btn-primary" asp-controller="Crud" asp-action="Create">Add New Service</button>
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col col-6">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="@Url.Content(item.ImagePath)" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.ServiceName</h5>
+                                <p class="card-text"><small>@item.Price.ToString("C")</small></p>
+
+                                <p class="card-text"><small>@item.CategoryId</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col col-5">
+                <br /><br />
+                <a class="btn btn-success" asp-controller="Crud" asp-action="Delete" asp-route-id="@item.ServiceId">Delete</a>&nbsp;&nbsp;
+                <a class="btn btn-warning" asp-controller="Crud" asp-action="Edit" asp-route-serviceId="@item.ServiceId">Edit</a>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+
+

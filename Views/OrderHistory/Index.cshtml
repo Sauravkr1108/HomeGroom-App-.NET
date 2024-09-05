@@ -1,0 +1,57 @@
+﻿@model IEnumerable<HomeGroom.Models.CartItem>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script>
+            function ExportToExcel(type, fn, dl)
+            {
+                var elt = document.getElementById('table_export');
+                var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+                return dl ?
+                    XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+                    XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
+            }
+    </script>
+    <div class="container mt-5">
+        <div class="display-6 text-center mb-4 text-secondary">Appointment History</div>
+        <button class="btn btn-primary" onclick="ExportToExcel('xlsx')">Export table to excel</button>
+        <br />
+        <table id="table_export" class="table table-success table-striped text-center">
+            <thead>
+                <tr>
+
+                    <th style="width:20px" scope="col">Username</th>
+                    <th style="width:20px" scope="col">Name</th>
+                    @*<th style="width:20px" scope="col">Mobile</th>*@
+                    <th style="width:20px" scope="col">Service Booked</th>
+
+                    <th style="width:10px" scope="col">Date</th>
+                    <th style="width:10px" scope="col">Time</th>
+                    <th style="width:20px" scope="col">Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+
+                    <td>@item.User</td>
+                    @*<td>@item.mob</td>*@
+                    <td>@item.Name</td>
+                    <td>@item.ServiceName</td>
+
+                    <td>@item.Date.ToShortDateString()</td>
+                    <td>@item.Time.ToShortTimeString()</td>
+                    <td>@item.Address</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+
+
+
+

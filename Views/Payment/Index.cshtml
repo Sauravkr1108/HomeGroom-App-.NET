@@ -1,0 +1,41 @@
+﻿@model HomeGroom.Models.Payment
+
+
+
+    <div class="container login-container mt-5">
+        <h5>Please fill up the details for payment</h5>
+        <div class="login-card">
+            <div class="login-card-body">
+
+                @using (Html.BeginForm("CreateOrder", "Payment", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <label for="name">Name</label>
+                        @Html.TextBoxFor(x => x.name, new { @class = "form-control" })
+                    </div>
+                    <div class="row">
+                        <label for="email">Email</label>
+                        @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+                    </div>
+                    <div class="row">
+                        <label for="contactNumber">Contact Number</label>
+                        <input type="tel" minlength="10" maxlength="10" title="10 digit mobile number" class="form-control" id="contactNumber" name="contactNumber">
+                        @*@Html.TextBoxFor(x => x.contactNumber, new { @class = "form-control" })*@
+                    </div>
+                    <div class="row">
+                        <label for="address">Address</label>
+                        @Html.TextBoxFor(x => x.address, new { @class = "form-control" })
+                    </div>
+                    <div class="row">
+                        <label for="amount">Amount</label>
+                        <input type="number"class="form-control" id="amount" name="amount">
+                        
+                        @*@Html.TextBoxFor(x => x.amount, new { @class = "form-control" })*@
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                }
+            </div>
+        </div>
+    </div>

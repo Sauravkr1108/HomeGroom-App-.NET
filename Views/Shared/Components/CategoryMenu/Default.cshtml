@@ -1,0 +1,26 @@
+﻿@model IEnumerable<HomeGroom.Models.Category>
+
+<style>
+    .fa-bars:hover{
+        color:purple
+    }
+</style>
+<div class="dropdown">
+    <div class="nav-link text-dark mx-2" data-bs-toggle="dropdown"><i style="color:gray;" class="fas fa-bars fa-2x"></i></div>
+    <ul class="dropdown-menu text-secondary">
+        @foreach (var category in Model)
+        {
+            <li class="dropdown-item">
+                <a class="nav-link text-dark mx-0 my-0" asp-controller="Menu" asp-action="Index" asp-route-category="@category.CategoryId"><p class="text-black" style="font-family:Calibri; font-size:18px;">@category.CategoryName</p></a>
+            </li>
+        }
+
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-item">
+            <a class="nav-link text-dark mx-0" asp-controller="Menu" asp-action="Index" asp-route-category=""><p class="text-black" style="font-family:Calibri; font-size:18px;">All Services</p></a>
+        </li>
+    </ul>
+</div>
+
+
+
